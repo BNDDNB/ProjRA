@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Ahmedur Rahman Shovon">
+    <title>Dropdown Example</title>
+</head>
+<body>
+  <p>Select a new car from the list.</p>
+  <form id="form1" action="/login" method="POST" enctype="multipart/form-data">
+  	<table>
+  		<tr>
+  			<th>
+  				<p>Please select first</p>
+  				<select id="mySelect1" name = "Region">
+			   	{% for region in regions %}
+			    	<option value = "{{region}}">{{ region }}</option>"
+			    {% endfor %}
+			    </select>
+    			
+  			</th>
+  			<th>
+  				<p>Please select 2nd</p>
+  				<select id="mySelect2" name = "Identity">
+			   	{% for identity in identities %}
+			    	<option value = "{{identity}}">{{ identity }}</option>"
+			    {% endfor %}
+			    </select>
+			    
+  			</th>	
+  			<th>
+  				<p>Please select 3rd</p>
+  				<select id="mySelect3" name = "Sex">
+			   	{% for sex in sexs %}
+			    	<option value = "{{sex}}">{{ sex }}</option>"
+			    {% endfor %}
+			    </select>
+			    
+  			</th>
+  			<th>
+  				<p>Please select 4th</p>
+				<select id="mySelect4" name = "Age">
+			   	{% for age in ages %}
+			    	<option value = "{{age}}">{{ age }}</option>"
+			    {% endfor %}
+			    </select>
+			    
+  			</th>
+  		</tr>
+  	</table>
+  	<input type="submit" value="Submit">
+  </form>
+  <p>When you select a new car, a function is triggered which outputs the value of the selected car.</p>
+  <div id="result">
+    {% if car_brand is defined %}
+        You have selected: {{ car_brand }}
+    {% endif %}
+  </div>
+</body>
+</html>
+
+
+
+ <!--{% for colour in colours %}
+    	<option value = "{{colour}}">{{ colour }}</option>"
+    {% endfor %}-->

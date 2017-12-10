@@ -1,0 +1,385 @@
+SNo,Region,Region_Indx,Province/ Territory,Name
+1,Western Canada,,Alberta,Airdrie
+2,Western Canada,,Alberta,Brooks
+3,Western Canada,,Alberta,Calgary
+4,Western Canada,,Alberta,Camrose
+5,Western Canada,,Alberta,Chestermere
+6,Western Canada,,Alberta,Cold Lake
+7,Western Canada,,Alberta,Edmonton
+8,Western Canada,,Alberta,Fort Saskatchewan
+9,Western Canada,,Alberta,Grande Prairie
+10,Western Canada,,Alberta,Lacombe
+11,Western Canada,,Alberta,Leduc
+12,Western Canada,,Alberta,Lethbridge
+13,Western Canada,,Alberta,Lloydminster (part)
+14,Western Canada,,Alberta,Medicine Hat
+15,Western Canada,,Alberta,Red Deer
+16,Western Canada,,Alberta,Spruce Grove
+17,Western Canada,,Alberta,St. Albert
+18,Western Canada,,Alberta,Wetaskiwin
+19,Western Canada,,British Columbia,Abbotsford
+20,Western Canada,,British Columbia,Armstrong
+21,Western Canada,,British Columbia,Burnaby
+22,Western Canada,,British Columbia,Campbell River
+23,Western Canada,,British Columbia,Castlegar
+24,Western Canada,,British Columbia,Chilliwack
+25,Western Canada,,British Columbia,Colwood
+26,Western Canada,,British Columbia,Coquitlam
+27,Western Canada,,British Columbia,Courtenay
+28,Western Canada,,British Columbia,Cranbrook
+29,Western Canada,,British Columbia,Dawson Creek
+30,Western Canada,,British Columbia,Duncan
+31,Western Canada,,British Columbia,Enderby
+32,Western Canada,,British Columbia,Fernie
+33,Western Canada,,British Columbia,Fort St. John
+34,Western Canada,,British Columbia,Grand Forks
+35,Western Canada,,British Columbia,Greenwood
+36,Western Canada,,British Columbia,Kamloops
+37,Western Canada,,British Columbia,Kelowna
+38,Western Canada,,British Columbia,Kimberley
+39,Western Canada,,British Columbia,Langford
+40,Western Canada,,British Columbia,Langley
+41,Western Canada,,British Columbia,Maple Ridge
+42,Western Canada,,British Columbia,Merritt
+43,Western Canada,,British Columbia,Nanaimo
+44,Western Canada,,British Columbia,Nelson
+45,Western Canada,,British Columbia,New Westminster
+46,Western Canada,,British Columbia,North Vancouver
+47,Western Canada,,British Columbia,Parksville
+48,Western Canada,,British Columbia,Penticton
+49,Western Canada,,British Columbia,Pitt Meadows
+50,Western Canada,,British Columbia,Port Alberni
+51,Western Canada,,British Columbia,Port Coquitlam
+52,Western Canada,,British Columbia,Port Moody
+53,Western Canada,,British Columbia,Powell River
+54,Western Canada,,British Columbia,Prince George
+55,Western Canada,,British Columbia,Prince Rupert
+56,Western Canada,,British Columbia,Quesnel
+57,Western Canada,,British Columbia,Revelstoke
+58,Western Canada,,British Columbia,Richmond
+59,Western Canada,,British Columbia,Rossland
+60,Western Canada,,British Columbia,Salmon Arm
+61,Western Canada,,British Columbia,Surrey
+62,Western Canada,,British Columbia,Terrace
+63,Western Canada,,British Columbia,Trail
+64,Western Canada,,British Columbia,Vancouver
+65,Western Canada,,British Columbia,Vernon
+66,Western Canada,,British Columbia,Victoria
+67,Western Canada,,British Columbia,White Rock
+68,Western Canada,,British Columbia,Williams Lake
+69,Western Canada,,Manitoba,Brandon
+70,Western Canada,,Manitoba,Dauphin
+71,Western Canada,,Manitoba,Flin Flon (part)
+72,Western Canada,,Manitoba,Morden
+73,Western Canada,,Manitoba,Portage la Prairie
+74,Western Canada,,Manitoba,Selkirk
+75,Western Canada,,Manitoba,Steinbach
+76,Western Canada,,Manitoba,Thompson
+77,Western Canada,,Manitoba,Winkler
+78,Western Canada,,Manitoba,Winnipeg
+79,Atlantic Canada,,New Brunswick,Bathurst
+80,Atlantic Canada,,New Brunswick,Campbellton
+81,Atlantic Canada,,New Brunswick,Dieppe
+82,Atlantic Canada,,New Brunswick,Edmundston
+83,Atlantic Canada,,New Brunswick,Fredericton
+84,Atlantic Canada,,New Brunswick,Miramichi
+85,Atlantic Canada,,New Brunswick,Moncton
+86,Atlantic Canada,,New Brunswick,Saint John
+87,Atlantic Canada,,Newfoundland and Labrador,Corner Brook
+88,Atlantic Canada,,Newfoundland and Labrador,Mount Pearl
+89,Atlantic Canada,,Newfoundland and Labrador,St. John's
+90,Northern Canada,,Northwest Territories,Yellowknife
+91,Northern Canada,,Nunavut,Iqaluit
+92,Central Canada,,Ontario,Barrie
+93,Central Canada,,Ontario,Belleville
+94,Central Canada,,Ontario,Brampton
+95,Central Canada,,Ontario,Brant
+96,Central Canada,,Ontario,Brantford
+97,Central Canada,,Ontario,Brockville
+98,Central Canada,,Ontario,Burlington
+99,Central Canada,,Ontario,Cambridge
+100,Central Canada,,Ontario,Clarence-Rockland
+101,Central Canada,,Ontario,Cornwall
+102,Central Canada,,Ontario,Dryden
+103,Central Canada,,Ontario,Elliot Lake
+104,Central Canada,,Ontario,Greater Sudbury
+105,Central Canada,,Ontario,Guelph
+106,Central Canada,,Ontario,Haldimand County
+107,Central Canada,,Ontario,Hamilton
+108,Central Canada,,Ontario,Kawartha Lakes
+109,Central Canada,,Ontario,Kenora
+110,Central Canada,,Ontario,Kingston
+111,Central Canada,,Ontario,Kitchener
+112,Central Canada,,Ontario,London
+113,Central Canada,,Ontario,Markham
+114,Central Canada,,Ontario,Mississauga
+115,Central Canada,,Ontario,Niagara Falls
+116,Central Canada,,Ontario,Norfolk County
+117,Central Canada,,Ontario,North Bay
+118,Central Canada,,Ontario,Orillia
+119,Central Canada,,Ontario,Oshawa
+120,Central Canada,,Ontario,Ottawa
+121,Central Canada,,Ontario,Owen Sound
+122,Central Canada,,Ontario,Pembroke
+123,Central Canada,,Ontario,Peterborough
+124,Central Canada,,Ontario,Pickering
+125,Central Canada,,Ontario,Port Colborne
+126,Central Canada,,Ontario,Prince Edward County
+127,Central Canada,,Ontario,Quinte West
+128,Central Canada,,Ontario,Sarnia
+129,Central Canada,,Ontario,Sault Ste. Marie
+130,Central Canada,,Ontario,St. Catharines
+131,Central Canada,,Ontario,St. Thomas
+132,Central Canada,,Ontario,Stratford
+133,Central Canada,,Ontario,Temiskaming Shores
+134,Central Canada,,Ontario,Thorold
+135,Central Canada,,Ontario,Thunder Bay
+136,Central Canada,,Ontario,Timmins
+137,Central Canada,,Ontario,Toronto
+138,Central Canada,,Ontario,Vaughan
+139,Central Canada,,Ontario,Waterloo
+140,Central Canada,,Ontario,Welland
+141,Central Canada,,Ontario,Windsor
+142,Central Canada,,Ontario,Woodstock
+143,Atlantic Canada,,Prince Edward Island,Charlottetown
+144,Atlantic Canada,,Prince Edward Island,Summerside
+145,Central Canada,,Quebec,Acton Vale
+146,Central Canada,,Quebec,Alma
+147,Central Canada,,Quebec,Amos
+148,Central Canada,,Quebec,Amqui
+149,Central Canada,,Quebec,Asbestos
+150,Central Canada,,Quebec,Baie-Comeau
+151,Central Canada,,Quebec,Baie-D'Urf
+152,Central Canada,,Quebec,Baie-Saint-Paul
+153,Central Canada,,Quebec,Barkmere
+154,Central Canada,,Quebec,Beaconsfield
+155,Central Canada,,Quebec,Beauceville
+156,Central Canada,,Quebec,Beauharnois
+157,Central Canada,,Quebec,Beaupr
+158,Central Canada,,Quebec,Bcancour
+159,Central Canada,,Quebec,Bedford
+160,Central Canada,,Quebec,Belleterre
+161,Central Canada,,Quebec,Beloeil
+162,Central Canada,,Quebec,Berthierville
+163,Central Canada,,Quebec,Blainville
+164,Central Canada,,Quebec,Boisbriand
+165,Central Canada,,Quebec,Bois-des-Filion
+166,Central Canada,,Quebec,Bonaventure
+167,Central Canada,,Quebec,Boucherville
+168,Central Canada,,Quebec,Brome Lake
+169,Central Canada,,Quebec,Bromont
+170,Central Canada,,Quebec,Brossard
+171,Central Canada,,Quebec,Brownsburg-Chatham
+172,Central Canada,,Quebec,Candiac
+173,Central Canada,,Quebec,Cap-Chat
+174,Central Canada,,Quebec,Cap-Sant
+175,Central Canada,,Quebec,Carignan
+176,Central Canada,,Quebec,Carleton-sur-Mer
+177,Central Canada,,Quebec,Causapscal
+178,Central Canada,,Quebec,Chambly
+179,Central Canada,,Quebec,Chandler
+180,Central Canada,,Quebec,Chapais
+181,Central Canada,,Quebec,Charlemagne
+182,Central Canada,,Quebec,Ch‰teauguay
+183,Central Canada,,Quebec,Ch‰teau-Richer
+184,Central Canada,,Quebec,Chibougamau
+185,Central Canada,,Quebec,Clermont
+186,Central Canada,,Quebec,Coaticook
+187,Central Canada,,Quebec,Contrecoeur
+188,Central Canada,,Quebec,Cookshire-Eaton
+189,Central Canada,,Quebec,C™te Saint-Luc
+190,Central Canada,,Quebec,Coteau-du-Lac
+191,Central Canada,,Quebec,Cowansville
+192,Central Canada,,Quebec,Danville
+193,Central Canada,,Quebec,Daveluyville
+194,Central Canada,,Quebec,Dgelis
+195,Central Canada,,Quebec,Delson
+196,Central Canada,,Quebec,Desbiens
+197,Central Canada,,Quebec,Deux-Montagnes
+198,Central Canada,,Quebec,Disraeli
+199,Central Canada,,Quebec,Dolbeau-Mistassini
+200,Central Canada,,Quebec,Dollard-des-Ormeaux
+201,Central Canada,,Quebec,Donnacona
+202,Central Canada,,Quebec,Dorval
+203,Central Canada,,Quebec,Drummondville
+204,Central Canada,,Quebec,Dunham
+205,Central Canada,,Quebec,Duparquet
+206,Central Canada,,Quebec,East Angus
+207,Central Canada,,Quebec,Estrel
+208,Central Canada,,Quebec,Farnham
+209,Central Canada,,Quebec,Fermont
+210,Central Canada,,Quebec,Forestville
+211,Central Canada,,Quebec,Fossambault-sur-le-Lac
+212,Central Canada,,Quebec,Gasp
+213,Central Canada,,Quebec,Gatineau
+214,Central Canada,,Quebec,Gracefield
+215,Central Canada,,Quebec,Granby
+216,Central Canada,,Quebec,Grande-Rivire
+217,Central Canada,,Quebec,Hampstead
+218,Central Canada,,Quebec,Hudson
+219,Central Canada,,Quebec,Huntingdon
+220,Central Canada,,Quebec,Joliette
+221,Central Canada,,Quebec,Kingsey Falls
+222,Central Canada,,Quebec,Kirkland
+223,Central Canada,,Quebec,La Malbaie
+224,Central Canada,,Quebec,La Pocatire
+225,Central Canada,,Quebec,La Prairie
+226,Central Canada,,Quebec,La Sarre
+227,Central Canada,,Quebec,La Tuque
+228,Central Canada,,Quebec,Lac-Delage
+229,Central Canada,,Quebec,Lachute
+230,Central Canada,,Quebec,Lac-Mgantic
+231,Central Canada,,Quebec,Lac-Saint-Joseph
+232,Central Canada,,Quebec,Lac-Sergent
+233,Central Canada,,Quebec,L'Ancienne-Lorette
+234,Central Canada,,Quebec,L'Assomption
+235,Central Canada,,Quebec,Laval
+236,Central Canada,,Quebec,Lavaltrie
+237,Central Canada,,Quebec,Lebel-sur-Quvillon
+238,Central Canada,,Quebec,L'ƒpiphanie
+239,Central Canada,,Quebec,Lry
+240,Central Canada,,Quebec,Lvis
+241,Central Canada,,Quebec,L'ële-Cadieux
+242,Central Canada,,Quebec,L'ële-Dorval
+243,Central Canada,,Quebec,L'ële-Perrot
+244,Central Canada,,Quebec,Longueuil
+245,Central Canada,,Quebec,Lorraine
+246,Central Canada,,Quebec,Louiseville
+247,Central Canada,,Quebec,Macamic
+248,Central Canada,,Quebec,Magog
+249,Central Canada,,Quebec,Malartic
+250,Central Canada,,Quebec,Maniwaki
+251,Central Canada,,Quebec,Marieville
+252,Central Canada,,Quebec,Mascouche
+253,Central Canada,,Quebec,Matagami
+254,Central Canada,,Quebec,Matane
+255,Central Canada,,Quebec,Mercier
+256,Central Canada,,Quebec,MtabetchouanĞLac-ˆ-la-Croix
+257,Central Canada,,Quebec,Mtis-sur-Mer
+258,Central Canada,,Quebec,Mirabel
+259,Central Canada,,Quebec,Mont-Joli
+260,Central Canada,,Quebec,Mont-Laurier
+261,Central Canada,,Quebec,Montmagny
+262,Central Canada,,Quebec,Montreal
+263,Central Canada,,Quebec,Montreal West
+264,Central Canada,,Quebec,Montral-Est
+265,Central Canada,,Quebec,Mont-Saint-Hilaire
+266,Central Canada,,Quebec,Mont-Tremblant
+267,Central Canada,,Quebec,Mount Royal
+268,Central Canada,,Quebec,Murdochville
+269,Central Canada,,Quebec,Neuville
+270,Central Canada,,Quebec,New Richmond
+271,Central Canada,,Quebec,Nicolet
+272,Central Canada,,Quebec,Normandin
+273,Central Canada,,Quebec,Notre-Dame-de-l'ële-Perrot
+274,Central Canada,,Quebec,Notre-Dame-des-Prairies
+275,Central Canada,,Quebec,Otterburn Park
+276,Central Canada,,Quebec,Paspbiac
+277,Central Canada,,Quebec,Perc
+278,Central Canada,,Quebec,Pincourt
+279,Central Canada,,Quebec,Plessisville
+280,Central Canada,,Quebec,Pohngamook
+281,Central Canada,,Quebec,Pointe-Claire
+282,Central Canada,,Quebec,Pont-Rouge
+283,Central Canada,,Quebec,Port-Cartier
+284,Central Canada,,Quebec,Portneuf
+285,Central Canada,,Quebec,Prvost
+286,Central Canada,,Quebec,Princeville
+287,Central Canada,,Quebec,Qubec
+288,Central Canada,,Quebec,Repentigny
+289,Central Canada,,Quebec,Richelieu
+290,Central Canada,,Quebec,Richmond
+291,Central Canada,,Quebec,Rimouski
+292,Central Canada,,Quebec,Rivire-du-Loup
+293,Central Canada,,Quebec,Rivire-Rouge
+294,Central Canada,,Quebec,Roberval
+295,Central Canada,,Quebec,Rosemre
+296,Central Canada,,Quebec,Rouyn-Noranda
+297,Central Canada,,Quebec,Saguenay
+298,Central Canada,,Quebec,Saint-Augustin-de-Desmaures
+299,Central Canada,,Quebec,Saint-Basile
+300,Central Canada,,Quebec,Saint-Basile-le-Grand
+301,Central Canada,,Quebec,Saint-Bruno-de-Montarville
+302,Central Canada,,Quebec,Saint-Csaire
+303,Central Canada,,Quebec,Saint-Colomban
+304,Central Canada,,Quebec,Saint-Constant
+305,Central Canada,,Quebec,Sainte-Adle
+306,Central Canada,,Quebec,Sainte-Agathe-des-Monts
+307,Central Canada,,Quebec,Sainte-Anne-de-Beaupr
+308,Central Canada,,Quebec,Sainte-Anne-de-Bellevue
+309,Central Canada,,Quebec,Sainte-Anne-des-Monts
+310,Central Canada,,Quebec,Sainte-Anne-des-Plaines
+311,Central Canada,,Quebec,Sainte-Catherine
+312,Central Canada,,Quebec,Sainte-Catherine-de-la-Jacques-Cartier
+313,Central Canada,,Quebec,Sainte-Julie
+314,Central Canada,,Quebec,Sainte-Marguerite-du-Lac-Masson
+315,Central Canada,,Quebec,Sainte-Marie
+316,Central Canada,,Quebec,Sainte-Marthe-sur-le-Lac
+317,Central Canada,,Quebec,Sainte-Thrse
+318,Central Canada,,Quebec,Saint-Eustache
+319,Central Canada,,Quebec,Saint-Flicien
+320,Central Canada,,Quebec,Saint-Gabriel
+321,Central Canada,,Quebec,Saint-Georges
+322,Central Canada,,Quebec,Saint-Hyacinthe
+323,Central Canada,,Quebec,Saint-Jean-sur-Richelieu
+324,Central Canada,,Quebec,Saint-Jr™me
+325,Central Canada,,Quebec,Saint-Joseph-de-Beauce
+326,Central Canada,,Quebec,Saint-Joseph-de-Sorel
+327,Central Canada,,Quebec,Saint-Lambert
+328,Central Canada,,Quebec,Saint-Lazare
+329,Central Canada,,Quebec,Saint-Lin-Laurentides
+330,Central Canada,,Quebec,Saint-Marc-des-Carrires
+331,Central Canada,,Quebec,Saint-Ours
+332,Central Canada,,Quebec,Saint-Pamphile
+333,Central Canada,,Quebec,Saint-Pascal
+334,Central Canada,,Quebec,Saint-Pie
+335,Central Canada,,Quebec,Saint-Raymond
+336,Central Canada,,Quebec,Saint-Rmi
+337,Central Canada,,Quebec,Saint-Sauveur
+338,Central Canada,,Quebec,Saint-Tite
+339,Central Canada,,Quebec,Salaberry-de-Valleyfield
+340,Central Canada,,Quebec,Schefferville
+341,Central Canada,,Quebec,Scotstown
+342,Central Canada,,Quebec,Senneterre
+343,Central Canada,,Quebec,Sept-ëles
+344,Central Canada,,Quebec,Shawinigan
+345,Central Canada,,Quebec,Sherbrooke
+346,Central Canada,,Quebec,Sorel-Tracy
+347,Central Canada,,Quebec,Stanstead
+348,Central Canada,,Quebec,Sutton
+349,Central Canada,,Quebec,Tmiscaming
+350,Central Canada,,Quebec,Tmiscouata-sur-le-Lac
+351,Central Canada,,Quebec,Terrebonne
+352,Central Canada,,Quebec,Thetford Mines
+353,Central Canada,,Quebec,Thurso
+354,Central Canada,,Quebec,Trois-Pistoles
+355,Central Canada,,Quebec,Trois-Rivires
+356,Central Canada,,Quebec,Valcourt
+357,Central Canada,,Quebec,Val-d'Or
+358,Central Canada,,Quebec,Varennes
+359,Central Canada,,Quebec,Vaudreuil-Dorion
+360,Central Canada,,Quebec,Victoriaville
+361,Central Canada,,Quebec,Ville-Marie
+362,Central Canada,,Quebec,Warwick
+363,Central Canada,,Quebec,Waterloo
+364,Central Canada,,Quebec,Waterville
+365,Central Canada,,Quebec,Westmount
+366,Central Canada,,Quebec,Windsor
+367,Western Canada,,Saskatchewan,Estevan
+368,Western Canada,,Saskatchewan,Flin Flon (part)
+369,Western Canada,,Saskatchewan,Humboldt
+370,Western Canada,,Saskatchewan,Lloydminster (part)
+371,Western Canada,,Saskatchewan,Martensville
+372,Western Canada,,Saskatchewan,Meadow Lake
+373,Western Canada,,Saskatchewan,Melfort
+374,Western Canada,,Saskatchewan,Melville
+375,Western Canada,,Saskatchewan,Moose Jaw
+376,Western Canada,,Saskatchewan,North Battleford
+377,Western Canada,,Saskatchewan,Prince Albert
+378,Western Canada,,Saskatchewan,Regina
+379,Western Canada,,Saskatchewan,Saskatoon
+380,Western Canada,,Saskatchewan,Swift Current
+381,Western Canada,,Saskatchewan,Warman
+382,Western Canada,,Saskatchewan,Weyburn
+383,Western Canada,,Saskatchewan,Yorkton
+384,Northern Canada,,Yukon,Whitehorse
