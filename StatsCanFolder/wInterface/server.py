@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect, send_from_directory
-
-
+import csv, sqlite3
+import pandas as pd
+import backend
 '''
 declaration of global variables
 '''
@@ -16,7 +17,8 @@ identities = ['Total - Population by Registered or Treaty Indian status','Regist
 
 @app.route('/')
 def index():
-    return render_template("index.html", regions = regions, sexs = sexs, ages = ages, identities = identities)
+    return render_template("index.html", regions = regions, sexs = sexs, \
+        ages = ages, identities = identities, cities = cities)
 
 # def show_map():
 # 	return send_from_directory('html','results/Heatmap.html')
@@ -24,17 +26,25 @@ def index():
 @app.route('/', methods=['GET', 'POST'])
 def proc():
     if request.method == "POST":
-        car_brand = request.form.get("Region", None)
-        car_brand2 = request.form.get("Identity", None)
-        car_brand3 = request.form.get("Sex", None)
-        car_brand4 = request.form.get("Age", None)
+        region = request.form.get("Region", None)
+        identity = request.form.get("Identity", None)
+        sex = request.form.get("Sex", None)
+        age = request.form.get("Age", None)
+        city = request.form.get("City",None)
         if car_brand!=None:
         	#car_brand = "" + value for key, value in car_brand
         	#show_map()
-        	return render_template("index.html", car_brand = car_brand,  regions = regions, sexs = sexs, ages = ages, identities = identities)
+        	return render_template("index.html", car_brand = car_brand,  regions = regions, sexs = sexs, \
+                ages = ages, identities = identities, cities = cities)
         	#return render_template("results/Heatmap.html")
-    return render_template("index.html", regions = regions, sexs = sexs, ages = ages, identities = identities)
+    return render_template("index.html", regions = regions, sexs = sexs, \
+         ages = ages, identities = identities, cities = cities)
 
 
 if __name__ == '__main__':
+    con = sqlite3.connect(":memory:")
+    init()
+    data_reader(con, datafile)
+    cities = query_cityList(con)
+    print (cities)
     app.run(debug=True)
