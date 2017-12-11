@@ -1,6 +1,11 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, send_from_directory
 
-app = Flask(__name__)
+
+'''
+declaration of global variables
+'''
+
+app = Flask(__name__, static_url_path = '/static')
 app.debug = True
 regions = ['Western Canada', 'Central Canada', 'Atlantic Canada', 'Northern Canada']
 sexs = ['Total - Sex', 'Male', 'Female']
@@ -10,12 +15,14 @@ identities = ['Total - Population by Registered or Treaty Indian status','Regist
 
 
 @app.route('/')
-@app.route('/index')
 def index():
     return render_template("index.html", regions = regions, sexs = sexs, ages = ages, identities = identities)
 
-@app.route('/proc', methods=['GET', 'POST'])
-def login():
+# def show_map():
+# 	return send_from_directory('html','results/Heatmap.html')
+
+@app.route('/', methods=['GET', 'POST'])
+def proc():
     if request.method == "POST":
         car_brand = request.form.get("Region", None)
         car_brand2 = request.form.get("Identity", None)
@@ -23,8 +30,11 @@ def login():
         car_brand4 = request.form.get("Age", None)
         if car_brand!=None:
         	#car_brand = "" + value for key, value in car_brand
+        	#show_map()
         	return render_template("index.html", car_brand = car_brand,  regions = regions, sexs = sexs, ages = ages, identities = identities)
+        	#return render_template("results/Heatmap.html")
     return render_template("index.html", regions = regions, sexs = sexs, ages = ages, identities = identities)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

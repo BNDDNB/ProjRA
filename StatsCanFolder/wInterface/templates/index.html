@@ -8,7 +8,7 @@
 </head>
 <body>
   <p>Select a new car from the list.</p>
-  <form id="form1" action="/login" method="POST" enctype="multipart/form-data">
+  <form id="form1" method="POST" enctype="multipart/form-data">
   	<table>
   		<tr>
   			<th>
@@ -54,9 +54,10 @@
   <p>When you select a new car, a function is triggered which outputs the value of the selected car.</p>
   <div id="result">
     {% if car_brand is defined %}
-        You have selected: {{ car_brand }}
-    {% endif %}
+        <iframe id="serviceFrameSend" src = {{ url_for('static', filename='results/Heatmap.html') }} width="1000" height="600"  frameborder="0">
+  	{% endif %}
   </div>
+  
 </body>
 </html>
 

@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 from sqlite3 import Error
 
-
 '''
 create a database connection to a database that resides
     in the memory
@@ -25,16 +24,16 @@ def query_exec(con, cmd_lst):
         cur.execute(each)
 
 
-def query_mkr(geo_para = "", age_para = "", reg_para = "", sex_para = "", inc_para = "", city_para = ""):
-	result = ""
+def query_mkr(geo_para = "", age_para = "",  sex_para = "", inc_para = "", city_para = ""):
+	#the first condition is here because its necessary but doesnt change
+	result = " AND REG_STAT_IND = " + str(1)
 	if (geo_para != "" and city_para == ""):
 		result += " AND GEO_REG = " + str(region_d[geo_para])
 	if (city_para != ""):
 		result += " AND GEO_NAME = " + city_para
 	if(age_para != ""):
 		result += " AND AGE_GRP_IND = " + str(age_d[age_para])
-	if(reg_para != ""):
-		result += " AND REG_STAT_IND = " + str(reg_d[reg_para])
+	
 	if(sex_para != ""):
 		result += " AND SEX_IND = " + str(sex_d[sex_para])
 	if(inc_para != ""):
@@ -42,7 +41,6 @@ def query_mkr(geo_para = "", age_para = "", reg_para = "", sex_para = "", inc_pa
 	if(result != ""):
 		result = "WHERE " + result[5:]
 	return result
-
 
 
 def data_reader(con, filename):
@@ -73,36 +71,66 @@ def data_reader(con, filename):
 	requirement 1a uses the following which is the only one that requires proportion
 	"SELECT SUM(AB_ID) / SUM(TTL_STAT) as AB_VAL, SUM(NOT_AB)/SUM(TTL_STAT) as NON_AB_VAL FROM CensusT "
 '''
-def proc_tabular (con , regime, age_para,  sex_para, result_file_name, \
-			city_para = "", geo_para = "",reg_para = "Total - Population by Registered or Treaty Indian status"):
+def proc_tabular (con, sel, inc_para, age_para,  sex_para, result_file_name, city_para = "", geo_para = ""):
     	
-    	region_list = ['Western Canada', 'Central Canada', 'Atlantic Canada', 'Northern Canada']
-    
-    	df_pro = pd.DataFrame(columns = ['Aboraginal Identity', 'None Aboraginal Identity'], \
-    						index = ['Western Canada', 'Central Canada', 'Atlantic Canada', 'Northern Canada'])
-    
-    	for i in range(1,5):
-    		exec_clause1 = 
-    		where_clause1 = query_mkr(region_list[i-1], age_para,reg_para, sex_para, 'Total - Income statistics', city_para)
-    		exec_clause2 = "SELECT AB_ID, NOT_AB FROM CensusT "
-    		where_clause2 = query_mkr(region_list[i-1], age_para,reg_para, sex_para, 'Average total income ($)', city_para)
-    		cur = con.cursor()
-    		cur.execute(exec_clause + where_clause)
-    		rows = cur.fetchall()[0]
-    		df.iloc[i-1] = rows
-    	df.to_csv('./' + result_file_name)
+	region_list = list(region_d.keys())
+	df = pd.DataFrame(columns = ['Aboraginal Identity', 'None Aboraginal Identity'], \
+						index = ['Western Canada', 'Central Canada', 'Atlantic Canada', 'Northern Canada'])
+
+	for i in range(1,5):
+		where_clause = query_mkr(region_list[i-1], age_para, sex_para, inc_para , city_para)
+		cur = con.cursor()
+		cur.execute(sel + where_clause)
+		rows = cur.fetchall()[0]
+		df.iloc[i-1] = rows
+	df.to_csv('./' + result_file_name)
 
 
+def proc_c(con):
+	region_list = list(region_d.keys())
+	df = pd.DataFrame(columns = ['Aboriginal Male', 'Aboriginal Female', 'Non-Aboriginal Male', 'Non-Aboriginal Female'], \
+						index = ['Western Canada', 'Central Canada', 'Atlantic Canada', 'Northern Canada'])
+	sel_ppt = "SELECT SUM(AB_ID) AS AB_VAL, SUM(NOT_AB) AS NON_AB_VAL FROM CensusT "
+	for i in range(1,5):
+		where_clause_m = query_mkr(region_list[i-1], 'Total - Age', 'Male', 'Total - Income statistics')
+		where_clause_f = query_mkr(region_list[i-1], 'Total - Age', 'Female', 'Total - Income statistics')
+		where_clause_t = query_mkr(region_list[i-1], 'Total - Age', 'Total - Sex', 'Total - Income statistics')
+		cur = con.cursor()
+		cur.execute(sel_ppt+ where_clause_m)
+		rowsm = cur.fetchall()[0]
+		cur.execute(sel_ppt+ where_clause_f)
+		rowsf = cur.fetchall()[0]
+		cur.execute(sel_ppt + where_clause_t)
+		rowst = cur.fetchall()[0]
+		rows = tuple([rowsm[0]/rowst[0], rowsf[0]/rowst[0], rowsm[1]/rowst[1], rowsf[1]/rowst[1]])
+		df.iloc[i-1] = rows
+	df.to_csv('./MaleFemaleProportion.csv')
+
+
+def proc_d(con):
+	df = pd.DataFrame(columns = ['Max Aboraginal Identity Age Group'], \
+						index = ['Western Canada', 'Central Canada', 'Atlantic Canada', 'Northern Canada'])
+	sel_max = "SELECT AGE_GRP, MAX(AB_ID) FROM CensusT "
+	for i in range(1,5):
+		where_clause = "WHERE GEO_REG = " + str(i) + " AND SEX_IND = 1 AND INC_STAT_IND = 1 AND \
+						REG_STAT_IND = 1 AND AGE_GRP_IND <> 1 ;"
+		cur = con.cursor()
+		cur.execute(sel_max + where_clause)
+		rows = cur.fetchall()[0]
+		df.iloc[i-1] = rows[0]
+	df.to_csv('./MaxAgeGroup.csv')
 
 
 def init():
-	global sex_d, region_d, age_d, reg_d, inc_d,tbl_create, tbl_altr, tbl_update, included_cols, datafile
+	global sex_d, region_d, age_d, reg_d, inc_d, sel_pp, sel_avginc, tbl_create, tbl_altr, tbl_update, included_cols, datafile
 	sex_d = {'Total - Sex': 1, 'Male': 2, 'Female' : 3}
 	region_d = {'Western Canada':1, 'Central Canada':2, 'Atlantic Canada':3, 'Northern Canada':4}
 	age_d = {'Total - Age':1, '15 to 24 years':2, '25 to 64 years':3,'25 to 54 years':4, \
 			'25 to 34 years':5, '35 to 44 years':6, '45 to 54 years':7, '55 to 64 years':8, '65 years and over':9}
 	reg_d = {'Total - Population by Registered or Treaty Indian status':1,'Registered or Treaty Indian':2,'Not a Registered or Treaty Indian':3}
 	inc_d = {'Total - Income statistics':1, 'Average total income ($)':5}
+	sel_pp = "SELECT SUM(AB_ID) / SUM(TTL_STAT) as AB_VAL, SUM(NOT_AB)/SUM(TTL_STAT) as NON_AB_VAL FROM CensusT "
+	sel_avginc = "SELECT AB_ID, NOT_AB FROM CensusT "
 	datafile = 'DS1.csv' 
 	included_cols = [1,2,3,7,8,10,11,13,14,16,17,19,20,21,22,23,24,25,26,27]
 	tbl_altr = "ALTER TABLE CensusT ADD GEO_REG INT;"
@@ -117,12 +145,15 @@ def init():
 	    		ELSE 0 \
 	    		END);"
 
+
 def main():
 	con = sqlite3.connect(":memory:")
 	init()
 	data_reader(con, datafile)
-	proc_tabular(con, 'Population','Total - Age', 'Total - Sex', 'Population.csv')
-	proc_tabular(con, 'Income', 'Total - Age', 'Total - Sex', 'AvgTtlIncome.csv')
+	proc_tabular(con, sel_pp, 'Total - Income statistics', 'Total - Age', 'Total - Sex', 'PopulationProportion.csv')
+	proc_tabular(con, sel_avginc, 'Average total income ($)', 'Total - Age', 'Total - Sex', 'AvgTtlIncome.csv')
+	proc_c(con)
+	proc_d(con)
 
 
 	# proc_tabular(con,'Total - Age', 'Total - Population by Registered or Treaty Indian status', \
