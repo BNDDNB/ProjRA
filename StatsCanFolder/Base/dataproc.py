@@ -17,7 +17,6 @@ during the input, dimentions of data include and their corresponded columns
 to-do: parameterize the column list during the ingestion
 '''
 
-
 def query_exec(con, cmd_lst):
     cur = con.cursor() 
     for each in cmd_lst:
@@ -60,7 +59,6 @@ def data_reader(con, filename):
 	SEX, SEX_IND, INC_STAT, INC_STAT_IND, TTL_STAT,  AB_ID, SING_AB, FNATION, METIS, \
 	INUK, MUL_AB, OS_AB, NOT_AB) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);", to_db)
 
-
 	#update tasks
 	cmd_lst = [tbl_altr,tbl_update]
 	query_exec(con, cmd_lst)
@@ -83,6 +81,7 @@ def proc_tabular (con, sel, inc_para, age_para,  sex_para, result_file_name, cit
 		cur.execute(sel + where_clause)
 		rows = cur.fetchall()[0]
 		df.iloc[i-1] = rows
+
 	df.to_csv('./' + result_file_name)
 
 
@@ -102,7 +101,8 @@ def proc_c(con):
 		rowsf = cur.fetchall()[0]
 		cur.execute(sel_ppt + where_clause_t)
 		rowst = cur.fetchall()[0]
-		rows = tuple([rowsm[0]/rowst[0], rowsf[0]/rowst[0], rowsm[1]/rowst[1], rowsf[1]/rowst[1]])
+		rows = tuple([float("{0:.2f}".format(rowsm[0]/rowst[0])), float("{0:.2f}".format(rowsf[0]/rowst[0])), \
+			 float("{0:.2f}".format(rowsm[1]/rowst[1])), float("{0:.2f}".format(rowsf[1]/rowst[1]))])
 		df.iloc[i-1] = rows
 	df.to_csv('./MaleFemaleProportion.csv')
 
@@ -129,7 +129,7 @@ def init():
 			'25 to 34 years':5, '35 to 44 years':6, '45 to 54 years':7, '55 to 64 years':8, '65 years and over':9}
 	reg_d = {'Total - Population by Registered or Treaty Indian status':1,'Registered or Treaty Indian':2,'Not a Registered or Treaty Indian':3}
 	inc_d = {'Total - Income statistics':1, 'Average total income ($)':5}
-	sel_pp = "SELECT SUM(AB_ID) / SUM(TTL_STAT) as AB_VAL, SUM(NOT_AB)/SUM(TTL_STAT) as NON_AB_VAL FROM CensusT "
+	sel_pp = "SELECT ROUND(SUM(AB_ID) / SUM(TTL_STAT),2) as AB_VAL, ROUND(SUM(NOT_AB)/SUM(TTL_STAT),2) as NON_AB_VAL FROM CensusT "
 	sel_avginc = "SELECT AB_ID, NOT_AB FROM CensusT "
 	datafile = 'DS1.csv' 
 	included_cols = [1,2,3,7,8,10,11,13,14,16,17,19,20,21,22,23,24,25,26,27]
@@ -154,10 +154,6 @@ def main():
 	proc_tabular(con, sel_avginc, 'Average total income ($)', 'Total - Age', 'Total - Sex', 'AvgTtlIncome.csv')
 	proc_c(con)
 	proc_d(con)
-
-
-	# proc_tabular(con,'Total - Age', 'Total - Population by Registered or Treaty Indian status', \
-	# 	'Total - Sex', 'Average total income ($)','AvgTtlIncome.csv')
 
 
 if __name__ == '__main__':

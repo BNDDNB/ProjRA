@@ -7,12 +7,12 @@
     <title>Dropdown Example</title>
 </head>
 <body>
-  <p>Select a new car from the list.</p>
+  <p>Please select filters from the list.</p>
   <form id="form1" method="POST" enctype="multipart/form-data">
   	<table>
   		<tr>
   			<th>
-  				<p>Please select first</p>
+  				<p>Regions</p>
   				<select id="mySelect1" name = "Region">
 			   	{% for region in regions %}
 			    	<option value = "{{region}}">{{ region }}</option>"
@@ -21,7 +21,7 @@
     			
   			</th>
   			<th>
-  				<p>Please select 2nd</p>
+  				<p>Identity</p>
   				<select id="mySelect2" name = "Identity">
 			   	{% for identity in identities %}
 			    	<option value = "{{identity}}">{{ identity }}</option>"
@@ -30,7 +30,7 @@
 			    
   			</th>	
   			<th>
-  				<p>Please select 3rd</p>
+  				<p>Sex</p>
   				<select id="mySelect3" name = "Sex">
 			   	{% for sex in sexs %}
 			    	<option value = "{{sex}}">{{ sex }}</option>"
@@ -39,7 +39,7 @@
 			    
   			</th>
   			<th>
-  				<p>Please select 4th</p>
+  				<p>Age</p>
 				<select id="mySelect4" name = "Age">
 			   	{% for age in ages %}
 			    	<option value = "{{age}}">{{ age }}</option>"
@@ -47,22 +47,31 @@
 			    </select>
 			    
   			</th>
+
+        <th>
+          <p>City, Province, Country</p>
+          <select id="mySelect5" name = "City">
+          {% for city in cities %}
+            <option value = "{{city}}">{{ city }}</option>"
+          {% endfor %}
+          </select>
+          
+        </th>
   		</tr>
   	</table>
-  	<input type="submit" value="Submit">
+    <br>
+  	<input type="submit" name = "submit" value="Submit">
+    <input type="submit" name = "submit" value="Heatmap">
   </form>
-  <p>When you select a new car, a function is triggered which outputs the value of the selected car.</p>
+  
+  <p></p>
   <div id="result">
-    {% if car_brand is defined %}
+    {% if showHeatmap == 1 %}
         <iframe id="serviceFrameSend" src = {{ url_for('static', filename='results/Heatmap.html') }} width="1000" height="600"  frameborder="0">
-  	{% endif %}
+  	{% elif resultfig != None %}
+        <img src = "data:image/png;base64,{{ resultfig }}" width="1000" height="600" >
+    {% endif %}
   </div>
   
 </body>
 </html>
-
-
-
- <!--{% for colour in colours %}
-    	<option value = "{{colour}}">{{ colour }}</option>"
-    {% endfor %}-->
