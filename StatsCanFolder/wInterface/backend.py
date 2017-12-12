@@ -5,6 +5,9 @@ from sqlite3 import Error
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
+import os
+import folium
+from folium.plugins import HeatMap
 '''
 create a database connection to a database that resides
     in the memory
@@ -19,6 +22,35 @@ during the input, dimentions of data include and their corresponded columns
 to-do: parameterize the column list during the ingestion
 '''
 
+def createHMData(con):
+	cur = con.cursor()
+	clause = "SELECT GEO_NAME ,AB_ID FROM CensusT WHERE GEO_LVL >= 2 AND REG_STAT_IND = 1 AND AGE_GRP_IND = 1 \
+				AND SEX_IND = 1 AND INC_STAT_IND = 1;"
+	df = pd.read_csv('CityLoc.csv',index_col=0, header = 0)
+	df['Value'] = np.nan
+	cur.execute(clause)
+	rows = cur.fetchall()
+	for i in range(0,len(rows)):
+		try:
+			df.at[rows[i][0],'Value'] = rows[i][1]
+		except:
+			pass
+	df = df[pd.notnull(df['Value'])]
+	df = df[pd.notnull(df['Lat'])]
+	df.to_csv('citylocandvalue.csv')
+
+
+def make_heatmap():
+	df = pd.read_csv('citylocandvalue.csv')
+	max_amount = float(df['Value'].max())
+	m = folium.Map([56,-95], tiles='Stamen Terrain', zoom_start=4)
+	hm_wide = HeatMap(list(zip(df.Lat.values, df.Lon.values, df.Value.values)), 
+               min_opacity=0.2,
+               max_val=max_amount,
+               radius=17, blur=15, 
+               max_zoom=1)
+	m.add_child(hm_wide)
+	m.save(os.path.join('static/results', 'Heatmap.html'))
 
 def query_exec(con, cmd_lst):
     cur = con.cursor() 
@@ -48,7 +80,7 @@ def query_mkr(geo_para = '', age_para = '',  sex_para = '', inc_para = '', city_
 	if (geo_para != '' and city_para == ' '):
 		result += " AND GEO_REG = " + str(region_d[geo_para])
 	if (city_para != ' '):
-		result += " AND GEO_NAME = " + city_para
+		result += " AND GEO_NAME = \'" + city_para + "\'"
 	if(age_para != ''):
 		result += " AND AGE_GRP_IND = " + str(age_d[age_para])
 	if(sex_para != ''):
@@ -98,20 +130,27 @@ def proc_tabular (con, iden_para, df, age_para, sex_para, inc_para, geo_para = '
 
 def plotter(con, age, sex, region, city, identity):
 	if (identity == ''):
+		titles = 'Aboraginal Identity vs None Aboraginal Identity'
 		df1 = pd.DataFrame(columns = ['Aboraginal Identity', 'None Aboraginal Identity'], \
 		                index = ['Population'])
 		df2 = pd.DataFrame(columns = ['Aboraginal Identity', 'None Aboraginal Identity'], \
 		                index = ['Average Total Income'])
 	else:
+		titles = identity
 		df1 = pd.DataFrame(columns = [identity], \
 		                index = ['Population'])
 		df2 = pd.DataFrame(columns = [identity], \
 		                index = ['Average Total Income'])
 	proc_tabular(con, identity, df1, age, sex, 'Total - Income statistics', region, city)
 	proc_tabular(con, identity, df2, age, sex, 'Average total income ($)', region, city)
-	fig, axes = plt.subplots(nrows=1, ncols=2)
-	df1.plot.bar(ax=axes[0])
-	df2.plot.bar(ax=axes[1])
+	fig, axes = plt.subplots(nrows=1, ncols=2,figsize = (12,12))
+	ax = df1.plot(kind='bar',ax=axes[0],rot=0)
+	ax.legend(prop={'size':6})
+	ax.set(ylabel = 'Population')
+	ax = df2.plot(kind='bar',ax=axes[1],rot=0)
+	ax.legend(prop={'size':6})
+	ax.set(ylabel = 'Average Income')
+	plt.suptitle(titles)
 	plt.savefig('./static/pvaplot.png', format='png')
 	figfile = BytesIO()
 	plt.savefig(figfile, format='png')
@@ -146,20 +185,4 @@ def init():
 	    		ELSE 0 \
 	    		END);"
 
-
-
-
-'''
-the following function can be used to create the database on disk
-'''
- 
-# def create_connection(db_file):
-#     """ create a database connection to a SQLite database """
-#     try:
-#         conn = sqlite3.connect(db_file)
-#         print(sqlite3.version)
-#     except Error as e:
-#         print(e)
-#     finally:
-#         conn.close()
 

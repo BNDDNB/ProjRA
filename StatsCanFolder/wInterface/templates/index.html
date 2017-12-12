@@ -61,14 +61,13 @@
   	</table>
     <br>
   	<input type="submit" name = "submit" value="Submit">
-    <input type="submit" name = "submit" value="Heatmap">
+    <input type="submit" name = "submit" value="Show Overall Heatmap">
   </form>
-  
-  <p></p>
   <div id="result">
     {% if showHeatmap == 1 %}
         <iframe id="serviceFrameSend" src = {{ url_for('static', filename='results/Heatmap.html') }} width="1000" height="600"  frameborder="0">
-  	{% elif resultfig != None %}
+  	{% elif showfig == 1 %}
+      <p>You have choosen {{ filterstr }} as filters</p>
         <img src = "data:image/png;base64,{{ resultfig }}" width="1000" height="600" >
     {% endif %}
   </div>

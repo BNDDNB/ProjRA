@@ -1,129 +1,129 @@
 City,Lat,Lon,Value
-Sainte-marie,46.43,-71.02,65
-Lachute,45.65,-74.35,155
-Bay roberts,47.59,-53.29,160
-Summerside,46.4,-63.8,185
-Hawkesbury,45.62,-74.6,195
-Canmore,51.09,-115.35,205
-Port hope,43.96,-78.3,220
-Thetford mines,46.1,-71.31,225
-Saint-georges,46.13,-70.68,230
-Cowansville,45.21,-72.75,230
-Ingersoll,43.03,-80.88,235
-Victoriaville,46.06,-71.96,265
-Weyburn,49.67,-103.86,265
-Matane,48.85,-67.53,300
-Salaberry-de-valleyfield,45.26,-74.14,355
-Cobourg,43.96,-78.17,360
-Lacombe,52.47,-113.73,375
-High river,50.58,-113.87,385
-Stratford,43.37,-80.98,400
-Collingwood,44.49,-80.21,450
-Saint-hyacinthe,45.63,-72.96,455
-Wasaga beach,44.53,-79.99,455
-Winkler,49.18,-97.93,465
-Swift current,50.3,-107.8,485
-Brooks,50.57,-111.91,525
-Grand falls-windsor,48.93,-55.66,560
-Strathmore,51.04,-113.4,595
-Estevan,49.14,-103.01,615
-Steinbach,49.52,-96.68,625
-Joliette,46.03,-73.45,640
-Sylvan lake,52.31,-114.1,645
-Arnprior,45.43,-76.37,650
-Shawinigan,46.56,-72.75,655
-Nelson,49.49,-117.3,660
-Leamington,42.06,-82.6,665
-Woodstock,43.13,-80.76,685
-Powell river,49.85,-124.52,690
-Camrose,53.02,-112.84,710
-Granby,45.41,-72.73,715
-Rimouski,48.44,-68.54,720
-Edmundston,47.38,-68.34,720
-Okotoks,50.72,-113.96,770
-Elliot lake,46.39,-82.66,770
-Gander,48.95,-54.65,775
-Parksville,49.33,-124.33,830
-Kentville,45.08,-64.51,840
-Brockville,44.61,-75.7,855
-Owen sound,44.57,-80.94,860
-Rouyn-noranda,48.24,-79.03,865
-Squamish,49.71,-13.17,875
-Drummondville,45.89,-72.49,880
-Bathurst,47.62,-65.65,930
-Salmon arm,50.7,-119.29,955
-Charlottetown,46.24,-63.14,960
-Alma,48.55,-71.66,985
-Carleton place,45.13,-76.13,990
-Petawawa,45.9,-77.28,1030
-Baie-comeau,49.22,-68.16,1035
-New glasgow,45.59,-62.65,1060
-Wetaskiwin,52.97,-113.38,1155
-Dawson creek,55.76,-120.24,1350
-Yorkton,51.21,-102.47,1365
-Orillia,44.6,-79.42,1395
-Moose jaw,50.39,-105.54,1450
-Campbellton,48,-66.68,1490
-Cranbrook,49.51,-115.77,1500
-Cornwall,45.03,-74.74,1700
-Guelph,43.56,-80.26,1730
-Truro,45.36,-63.28,1785
-Val-d'or,48.11,-77.79,1825
-Saint john,45.29,-66.06,1830
-Pembroke,45.83,-77.12,1965
-Sherbrooke,45.4,-71.9,2080
-Kenora,49.78,-94.49,2230
-Lloydminster,53.28,-110.01,2350
-Quesnel,52.98,-122.48,2370
-Courtenay,49.69,-125,2385
-Penticton,49.5,-119.59,2510
-Medicine hat,50.04,-110.69,2550
-Terrace,54.52,-128.61,2620
-Williams lake,52.13,-122.14,2625
-Portage la prairie,49.98,-98.31,2645
-Moncton,46.09,-64.78,2765
-Sarnia,42.99,-82.4,2950
-Port alberni,49.27,-124.82,3000
-Fredericton,45.96,-66.66,3095
-Vernon,50.27,-119.28,3140
-Yellowknife,62.46,-114.36,3295
-North battleford,52.79,-108.29,3310
-Campbell river,49.99,-125.23,3525
-Timmins,48.49,-81.35,3545
-Prince rupert,54.32,-130.31,3605
-Whitehorse,60.73,-135.05,3630
-Red deer,52.27,-113.83,3855
-Thompson,55.74,-97.86,3865
-Belleville,44.17,-77.38,3910
-Duncan,48.78,-123.7,4120
-Peterborough,44.3,-78.34,4185
-Midland,44.75,-79.89,4190
-Lethbridge,49.69,-112.83,4305
-Kingston,44.23,-76.5,4405
-Grande prairie,55.18,-118.8,4640
-Brantford,43.15,-80.26,4650
-Brandon,49.84,-99.96,4760
-Barrie,44.38,-79.68,5090
-North bay,46.3,-79.45,5525
-Nanaimo,49.21,-123.97,5980
-Wood buffalo,56.74,-111.43,6195
-Corner brook,48.96,-57.96,6435
-Windsor,42.3,-83.03,6570
-Chilliwack,49.17,-121.96,6695
-Oshawa,43.89,-78.86,6985
-Kamloops,50.68,-120.34,7960
-Kelowna,49.89,-119.46,8435
-Prince george,53.91,-122.77,8800
-London,42.97,-81.24,9035
-Thunder bay,48.42,-89.28,10885
-Hamilton,43.26,-79.85,11020
-Prince albert,53.2,-105.75,11450
-Halifax,44.67,-63.61,12300
-Victoria,48.43,-123.37,13120
-Regina,50.45,-104.61,14550
-Saskatoon,52.15,-106.66,21575
-Calgary,51.05,-114.06,30745
-Toronto,43.65,-79.38,36365
-Vancouver,49.28,-123.13,47285
-Edmonton,53.57,-113.54,55470
-Winnipeg,49.88,-97.17,66580
+Alma,48.55,-71.66,985.0
+Arnprior,45.43,-76.37,650.0
+Baie-Comeau,49.22,-68.16,1035.0
+Barrie,44.38,-79.68,5090.0
+Bathurst,47.62,-65.65,930.0
+Bay Roberts,47.59,-53.29,160.0
+Belleville,44.17,-77.38,3910.0
+Brandon,49.84,-99.96,4760.0
+Brantford,43.15,-80.26,4650.0
+Brockville,44.61,-75.7,855.0
+Brooks,50.57,-111.91,525.0
+Calgary,51.05,-114.06,30745.0
+Campbell River,49.99,-125.23,3525.0
+Campbellton,48.0,-66.68,1490.0
+Camrose,53.02,-112.84,710.0
+Canmore,51.09,-115.35,205.0
+Carleton Place,45.13,-76.13,990.0
+Charlottetown,46.24,-63.14,960.0
+Chilliwack,49.17,-121.96,6695.0
+Cobourg,43.96,-78.17,360.0
+Collingwood,44.49,-80.21,450.0
+Corner Brook,48.96,-57.96,6435.0
+Cornwall,45.03,-74.74,1700.0
+Courtenay,49.69,-125.0,2385.0
+Cowansville,45.21,-72.75,230.0
+Cranbrook,49.51,-115.77,1500.0
+Dawson Creek,55.76,-120.24,1350.0
+Drummondville,45.89,-72.49,880.0
+Duncan,48.78,-123.7,4120.0
+Edmonton,53.57,-113.54,55470.0
+Edmundston,47.38,-68.34,720.0
+Elliot Lake,46.39,-82.66,770.0
+Estevan,49.14,-103.01,615.0
+Fredericton,45.96,-66.66,3095.0
+Gander,48.95,-54.65,775.0
+Granby,45.41,-72.73,715.0
+Grand Falls-Windsor,48.93,-55.66,560.0
+Grande Prairie,55.18,-118.8,4640.0
+Guelph,43.56,-80.26,1730.0
+Halifax,44.67,-63.61,12300.0
+Hamilton,43.26,-79.85,11020.0
+Hawkesbury,45.62,-74.6,195.0
+High River,50.58,-113.87,385.0
+Ingersoll,43.03,-80.88,235.0
+Joliette,46.03,-73.45,640.0
+Kamloops,50.68,-120.34,7960.0
+Kelowna,49.89,-119.46,8435.0
+Kenora,49.78,-94.49,2230.0
+Kentville,45.08,-64.51,840.0
+Kingston,44.23,-76.5,4405.0
+Lachute,45.65,-74.35,155.0
+Lacombe,52.47,-113.73,375.0
+Leamington,42.06,-82.6,665.0
+Lethbridge,49.69,-112.83,4305.0
+Lloydminster,53.28,-110.01,2350.0
+London,42.97,-81.24,9035.0
+Matane,48.85,-67.53,300.0
+Medicine Hat,50.04,-110.69,2550.0
+Midland,44.75,-79.89,4190.0
+Moncton,46.09,-64.78,2765.0
+Moose Jaw,50.39,-105.54,1450.0
+Nanaimo,49.21,-123.97,5980.0
+Nelson,49.49,-117.3,660.0
+New Glasgow,45.59,-62.65,1060.0
+North Battleford,52.79,-108.29,3310.0
+North Bay,46.3,-79.45,5525.0
+Okotoks,50.72,-113.96,770.0
+Orillia,44.6,-79.42,1395.0
+Oshawa,43.89,-78.86,6985.0
+Owen Sound,44.57,-80.94,860.0
+Parksville,49.33,-124.33,830.0
+Pembroke,45.83,-77.12,1965.0
+Penticton,49.5,-119.59,2510.0
+Petawawa,45.9,-77.28,1030.0
+Peterborough,44.3,-78.34,4185.0
+Port Alberni,49.27,-124.82,3000.0
+Port Hope,43.96,-78.3,220.0
+Portage la Prairie,49.98,-98.31,2645.0
+Powell River,49.85,-124.52,690.0
+Prince Albert,53.2,-105.75,11450.0
+Prince George,53.91,-122.77,8800.0
+Prince Rupert,54.32,-130.31,3605.0
+Quesnel,52.98,-122.48,2370.0
+Red Deer,52.27,-113.83,3855.0
+Regina,50.45,-104.61,14550.0
+Rimouski,48.44,-68.54,720.0
+Rouyn-Noranda,48.24,-79.03,865.0
+Saint John,45.29,-66.06,1830.0
+Saint-Georges,46.13,-70.68,230.0
+Saint-Hyacinthe,45.63,-72.96,455.0
+Sainte-Marie,46.43,-71.02,65.0
+Salaberry-de-Valleyfield,45.26,-74.14,355.0
+Salmon Arm,50.7,-119.29,955.0
+Sarnia,42.99,-82.4,2950.0
+Saskatoon,52.15,-106.66,21575.0
+Shawinigan,46.56,-72.75,655.0
+Sherbrooke,45.4,-71.9,2080.0
+Squamish,49.71,-13.17,875.0
+Steinbach,49.52,-96.68,625.0
+Stratford,43.37,-80.98,400.0
+Strathmore,51.04,-113.4,595.0
+Summerside,46.4,-63.8,185.0
+Swift Current,50.3,-107.8,485.0
+Sylvan Lake,52.31,-114.1,645.0
+Terrace,54.52,-128.61,2620.0
+Thetford Mines,46.1,-71.31,225.0
+Thompson,55.74,-97.86,3865.0
+Thunder Bay,48.42,-89.28,10885.0
+Timmins,48.49,-81.35,3545.0
+Toronto,43.65,-79.38,36365.0
+Truro,45.36,-63.28,1785.0
+Val-d'Or,48.11,-77.79,1825.0
+Vancouver,49.28,-123.13,47285.0
+Vernon,50.27,-119.28,3140.0
+Victoria,48.43,-123.37,13120.0
+Victoriaville,46.06,-71.96,265.0
+Wasaga Beach,44.53,-79.99,455.0
+Wetaskiwin,52.97,-113.38,1155.0
+Weyburn,49.67,-103.86,265.0
+Whitehorse,60.73,-135.05,3630.0
+Williams Lake,52.13,-122.14,2625.0
+Windsor,42.3,-83.03,6570.0
+Winkler,49.18,-97.93,465.0
+Winnipeg,49.88,-97.17,66580.0
+Wood Buffalo,56.74,-111.43,6195.0
+Woodstock,43.13,-80.76,685.0
+Yellowknife,62.46,-114.36,3295.0
+Yorkton,51.21,-102.47,1365.0

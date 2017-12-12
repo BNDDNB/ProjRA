@@ -34,10 +34,10 @@ def proc():
             sex = request.form.get("Sex", None)
             age = request.form.get("Age", None)
             city = request.form.get("City",None)
+            filterstr = region + ', '+identity+', '+sex + ', '+age + ', '+city
             resultfig = backend.plotter(con, age, sex, region, city, identity)
-
-            return render_template("index.html", resultfig = resultfig,  regions = regions, sexs = sexs, \
-                ages = ages, identities = identities, cities = cities)
+            return render_template("index.html", showfig = 1, resultfig = resultfig,  regions = regions, \
+                    sexs = sexs, ages = ages, identities = identities, cities = cities, filterstr = filterstr)
         else:
             return render_template("index.html", showHeatmap = 1,  regions = regions, sexs = sexs, \
                     ages = ages, identities = identities, cities = cities)
@@ -52,6 +52,8 @@ if __name__ == '__main__':
         backend.init()
         backend.data_reader(con, backend.datafile)
         cities = backend.query_cityList(con)
+        backend.createHMData(con)
+        backend.make_heatmap()
         app.run(debug=True)
     except:
         print ("Unexpected error:" , sys.exc_info()[0])
