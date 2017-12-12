@@ -57,10 +57,14 @@ def query_exec(con, cmd_lst):
     for each in cmd_lst:
         cur.execute(each)
 
-def select_mkr(identity_para = ''):
+def select_mkr(identity_para = '', avg_para = False):
 	sel = "SELECT "
-	if identity_para != '':
-		sel = sel + select_d[identity_para] + " FROM CensusT "
+	if identity_para != '' and avg_para:
+		sel = sel + "AVG(" + select_d[identity_para] + ") FROM CensusT "
+	elif identity_para != '':
+		sel = sel + "SUM(" + select_d[identity_para] + ") FROM CensusT "
+	elif avg_para:
+		sel = sel + "AVG(AB_ID), AVG(NOT_AB) FROM CensusT "
 	else:
 		sel = sel + "SUM(AB_ID), SUM(NOT_AB) FROM CensusT "
 	return sel
@@ -120,7 +124,11 @@ def data_reader(con, filename):
 	"SELECT SUM(AB_ID) / SUM(TTL_STAT) as AB_VAL, SUM(NOT_AB)/SUM(TTL_STAT) as NON_AB_VAL FROM CensusT "
 '''
 def proc_tabular (con, iden_para, df, age_para, sex_para, inc_para, geo_para = '', city_para =  ' '):
-	sel_clause = select_mkr(iden_para)
+	if (inc_para == 'Average total income ($)'):
+		sel_clause = select_mkr(iden_para, True)
+	else:
+		sel_clause = select_mkr(iden_para,False)
+
 	where_clause = query_mkr(geo_para, age_para, sex_para, inc_para , city_para)
 	cur = con.cursor()
 	cur.execute(sel_clause + where_clause)
