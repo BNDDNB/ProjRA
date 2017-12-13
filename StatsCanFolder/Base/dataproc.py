@@ -14,15 +14,22 @@ during the input, dimentions of data include and their corresponded columns
 	DIM: Registered or Treaty Indian status (3)	REG_STAT
 	Member ID: Registered or Treaty Indian status (3)	REG_STAT_IND
 	DIM: Age (9)	AGE_GRP
-to-do: parameterize the column list during the ingestion
 '''
 
+
+'''
+The below function is used to process all misc tasks by
+executing through the querying list
+'''
 def query_exec(con, cmd_lst):
     cur = con.cursor() 
     for each in cmd_lst:
         cur.execute(each)
 
-
+'''
+data reader reads in data by creating table, inserting 
+and post processing to separat out regions of different province
+'''
 def data_reader(con, filename):
 	#creating table and prepare for the filenames
 	cur = con.cursor()
@@ -46,9 +53,11 @@ def data_reader(con, filename):
 	con.commit()
 	
 '''
-	this function created to finish the initial requirements based on dataset 1
-	requirement 1a uses the following which is the only one that requires proportion
-	"SELECT SUM(AB_ID) / SUM(TTL_STAT) as AB_VAL, SUM(NOT_AB)/SUM(TTL_STAT) as NON_AB_VAL FROM CensusT "
+	Below 4 functions proc_a, proc_b, proc_c,
+	proc_d are correpsonding to the 4 requirements
+	from the tasks a,b,c,d
+	The tasks are asking for different type of calculations
+	hence was not summarized into a helper function.
 '''
 def proc_a (con):
 	region_list = list(region_d.keys())
@@ -66,20 +75,29 @@ def proc_a (con):
 		df.at[rows[i][0],'None Aboraginal Identity'] = rows[i][2]
 	df.to_csv('./PopulationProportion.csv')
 
+
 def proc_b(con):
 	region_list = list(region_d.keys())
-	df = pd.DataFrame(columns = ['Aboraginal Identity', 'None Aboraginal Identity'], \
+	df_ttli = pd.DataFrame(0, columns = ['Aboraginal Identity', 'None Aboraginal Identity'], \
 						index = region_list)
-	clause = "SELECT GEO_REG_NAME, AVG(AB_ID) AS AVGAB, AVG(NOT_AB) AS AVGNAB FROM CensusT \
-				WHERE REG_STAT_IND = 1 AND AGE_GRP_IND = 1 AND SEX_IND = 1 AND INC_STAT_IND = 5 AND GEO_REG_IND >= 1\
-				GROUP BY GEO_REG_NAME;"
+	df_ttln = pd.DataFrame(0, columns = ['Aboraginal Identity', 'None Aboraginal Identity'], \
+						index = region_list)
+	clause1 = "SELECT GEO_REG_NAME, AB_ID , NOT_AB  FROM CensusT \
+				WHERE REG_STAT_IND = 1 AND AGE_GRP_IND = 1 AND SEX_IND = 1 AND INC_STAT_IND = 5 AND GEO_REG_IND >= 1"
+	clause2 = "SELECT GEO_REG_NAME, AB_ID , NOT_AB  FROM CensusT \
+				WHERE REG_STAT_IND = 1 AND AGE_GRP_IND = 1 AND SEX_IND = 1 AND INC_STAT_IND = 2 AND GEO_REG_IND >= 1"		
 	cur = con.cursor()
-	cur.execute(clause)
-	rows = cur.fetchall()
-	for i in range(0, len(rows)):
-		df.at[rows[i][0],'Aboraginal Identity'] = rows[i][1]
-		df.at[rows[i][0],'None Aboraginal Identity'] = rows[i][2]
-	df.to_csv('./AvgTtlIncome.csv')
+	cur.execute(clause1)
+	rowsi = cur.fetchall()
+	cur.execute(clause2)
+	rowsn = cur.fetchall()
+	for i in range(0, len(rowsi)):
+		df_ttli.at[rowsi[i][0],'Aboraginal Identity'] += rowsi[i][1] * rowsn[i][1]
+		df_ttli.at[rowsi[i][0],'None Aboraginal Identity'] += rowsi[i][2] * rowsn[i][2]
+		df_ttln.at[rowsi[i][0],'Aboraginal Identity'] += rowsn[i][1]
+		df_ttln.at[rowsi[i][0],'None Aboraginal Identity'] +=rowsn[i][2]
+	df_ttli = df_ttli.div(df_ttln).round(2)
+	df_ttli.to_csv('./AvgTtlIncome.csv')
 
 def proc_c(con):
 	region_list = list(region_d.keys())
@@ -126,6 +144,12 @@ def proc_d(con):
 		df.at[rows[i][0],'Max Aboraginal Identity Age Group'] = rows[i][1]
 	df.to_csv('./MaxAgeGroup.csv')
 
+'''
+	the initializing function establishing all 
+	global variables. the global variables were initially
+	designed with Bonus 2 in mind, hence was not written in
+	a class styled function
+'''
 
 def init():
 	global region_d, tbl_create, tbl_altr, tbl_altr2, tbl_update, included_cols, datafile
@@ -152,14 +176,24 @@ def init():
 	    		ELSE 0 END);"
 
 
+'''
+the main function that controls the entire program, 
+when run, the previous functions will be call using the below sequence
+'''
+
 def main():
-	con = sqlite3.connect(":memory:")
-	init()
-	data_reader(con, datafile)
-	proc_a(con)
-	proc_b(con)
-	proc_c(con)
-	proc_d(con)
+	try:
+		con = sqlite3.connect(":memory:")
+		init()
+		data_reader(con, datafile)
+		proc_a(con)
+		proc_b(con)
+		proc_c(con)
+		proc_d(con)
+	except Error as e:
+		print(e)
+	finally:
+		con.close()
 
 
 if __name__ == '__main__':
@@ -169,10 +203,11 @@ if __name__ == '__main__':
 
 '''
 the following function can be used to create the database on disk
+essentially, changing the above ":memory:" parts to a file on disk
+will result in everything being saved in to a a database on disk
 '''
  
 # def create_connection(db_file):
-#     """ create a database connection to a SQLite database """
 #     try:
 #         conn = sqlite3.connect(db_file)
 #         print(sqlite3.version)

@@ -8,18 +8,13 @@ import base64
 import os
 import folium
 from folium.plugins import HeatMap
+
+
 '''
-create a database connection to a database that resides
-    in the memory
-for the purpose of creating database in memory based on the projects
-during the input, dimentions of data include and their corresponded columns
-	GEO_CODE (POR)	GEO_CODE
-	GEO_LEVEL	GEO_LVL
-	GEO_NAME	GEO_NAME
-	DIM: Registered or Treaty Indian status (3)	REG_STAT
-	Member ID: Registered or Treaty Indian status (3)	REG_STAT_IND
-	DIM: Age (9)	AGE_GRP
-to-do: parameterize the column list during the ingestion
+this function is the prep function that uses the CityLoc information
+provided in the same folder to merge with the data that is available
+in the database, essentially, it matches the aboriginal population 
+with geographic location
 '''
 
 def createHMData(con):
@@ -39,6 +34,10 @@ def createHMData(con):
 	df = df[pd.notnull(df['Lat'])]
 	df.to_csv('citylocandvalue.csv')
 
+'''
+	this function uses the previously prepared result to make heatmap
+	and store it as a page in static/result directory
+'''
 
 def make_heatmap():
 	df = pd.read_csv('citylocandvalue.csv')
@@ -52,22 +51,13 @@ def make_heatmap():
 	m.add_child(hm_wide)
 	m.save(os.path.join('static/results', 'Heatmap.html'))
 
+'''
+	misc task executer, same as base
+'''
 def query_exec(con, cmd_lst):
     cur = con.cursor() 
     for each in cmd_lst:
         cur.execute(each)
-
-def select_mkr(identity_para = '', avg_para = False):
-	sel = "SELECT "
-	if identity_para != '' and avg_para:
-		sel = sel + "AVG(" + select_d[identity_para] + ") FROM CensusT "
-	elif identity_para != '':
-		sel = sel + "SUM(" + select_d[identity_para] + ") FROM CensusT "
-	elif avg_para:
-		sel = sel + "AVG(AB_ID), AVG(NOT_AB) FROM CensusT "
-	else:
-		sel = sel + "SUM(AB_ID), SUM(NOT_AB) FROM CensusT "
-	return sel
 
 
 def query_cityList(con):
@@ -119,22 +109,38 @@ def data_reader(con, filename):
 	con.commit()
 	
 '''
-	this function created to finish the initial requirements based on dataset 1
-	requirement 1a uses the following which is the only one that requires proportion
-	"SELECT SUM(AB_ID) / SUM(TTL_STAT) as AB_VAL, SUM(NOT_AB)/SUM(TTL_STAT) as NON_AB_VAL FROM CensusT "
+	This function queries and calculates all values that will be later drawn to 
+	plots using the pandas plotting function
 '''
 def proc_tabular (con, iden_para, df, age_para, sex_para, inc_para, geo_para = '', city_para =  ' '):
-	if (inc_para == 'Average total income ($)'):
-		sel_clause = select_mkr(iden_para, True)
-	else:
-		sel_clause = select_mkr(iden_para,False)
-
-	where_clause = query_mkr(geo_para, age_para, sex_para, inc_para , city_para)
+	sel = ""
+	res = ()
 	cur = con.cursor()
-	cur.execute(sel_clause + where_clause)
-	rows = cur.fetchall()[0]
-	df.iloc[0] = rows
+	if (inc_para == 'Average total income ($)'):
+		where_clause1 = query_mkr(geo_para, age_para, sex_para, 'Average total income ($)' , city_para)
+		where_clause2 = query_mkr(geo_para, age_para, sex_para, 'With total income' , city_para)
+		if(iden_para != ''):
+			sel = "SELECT " + select_d[iden_para] + " FROM CensusT "
+		else:
+			sel = "SELECT AB_ID, NOT_AB FROM CensusT "
+		row1 = np.array(list(map(list,cur.execute(sel+where_clause1).fetchall())))
+		row2 = np.array(list(map(list,cur.execute(sel+where_clause2).fetchall())))
+		res = tuple(np.divide(np.sum(np.multiply(row1,row2),axis = 0),row2.sum(axis = 0)))
+	else:
+		where_clause = query_mkr(geo_para, age_para, sex_para, inc_para , city_para)
+		if(iden_para != ''):
+			sel = "SELECT SUM(" + select_d[iden_para] + ") FROM CensusT "
+		else:
+			sel = "SELECT SUM(AB_ID), SUM(NOT_AB) FROM CensusT "
+		res = cur.execute(sel+where_clause).fetchall()[0]
+	df.iloc[0] = res
 
+'''
+	This function receives the requests from the front end and
+	passes parameters to the proc_tabular function to query and process
+	data and then use the returned data to draw plots and pass back to
+	front end
+'''
 
 def plotter(con, age, sex, region, city, identity):
 	if (identity == ''):
@@ -166,6 +172,11 @@ def plotter(con, age, sex, region, city, identity):
 	figdata_png = base64.b64encode(figfile.getvalue()).decode('ascii')
 	return figdata_png
 
+'''
+	this function is like the base function but instead
+	set the entire environments for the backends so that
+	both front and back can run with common parameters
+'''
 
 def init():
 	global sex_d, region_d, age_d, reg_d, inc_d, select_d, sel_pp, sel_cityList, sel_avginc, tbl_create, tbl_altr, tbl_update, included_cols, datafile
@@ -174,7 +185,7 @@ def init():
 	age_d = {'Total - Age':1, '15 to 24 years':2, '25 to 64 years':3,'25 to 54 years':4, \
 			'25 to 34 years':5, '35 to 44 years':6, '45 to 54 years':7, '55 to 64 years':8, '65 years and over':9}
 	reg_d = {'Total - Population by Registered or Treaty Indian status':1,'Registered or Treaty Indian':2,'Not a Registered or Treaty Indian':3}
-	inc_d = {'Total - Income statistics':1, 'Average total income ($)':5}
+	inc_d = {'Total - Income statistics':1, 'With total income':2, 'Average total income ($)':5}
 	select_d = {'Aboriginal':'AB_ID','Non-Aboriginal':'NOT_AB'}
 	sel_pp = "SELECT SUM(AB_ID) / SUM(TTL_STAT) as AB_VAL, SUM(NOT_AB)/SUM(TTL_STAT) as NON_AB_VAL FROM CensusT "
 	sel_avginc = "SELECT AB_ID, NOT_AB FROM CensusT "
