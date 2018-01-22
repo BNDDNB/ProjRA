@@ -6,6 +6,7 @@
 import doctest #maynot use this for now
 from quantopian.pipeline.data import Fundamentals
 from quantopian.pipeline.filters.fundamentals import IsPrimaryShare
+from quantopian.pipeline.filters.fundamentals import Q1500US
 
 '''
 checking if instrument is primary share 
@@ -47,7 +48,44 @@ where the avg$vol is a factor rep entire uni without any parameter
 univs = AverageDollarVolume(window_length = 10, mask = tradable).percentile_between(70,100)
 
 there are Q1500US and Q500US that can be used for the built-in
-pipeline that is already provided in the library
+pipeline that is already provided in the library, these universe are
+meant to be used as masks or filters
 
+
+all above code that starts with $$ was essentially a way of filtering out
+the wanted type of instruments characteristics
+
+now if we were to directly use in-built factors, we would get the following
 '''
+base_u = Q1500US() #this is a mask or filter condition, does not return all of instruments
+
+#some analysis
+
+mean_10 = SimpleMovingAnverage(inputs = [USEquityPricing.close], window_length = 10, mask = base_u)
+mean_30 = SimpleMovingAnverage(inputs = [USEquityPricing.close], window_length = 30, mask = base_u)
+
+#then based on this, create %diff (whats the diff comparing 30-10 or 10-30)
+pct_dif = (mean_30 - mean_10) / mean_10
+#this create filters for target instruments when calc in pipe
+longs = pct_dif.bottom(75) 
+shorts = pct_dif.top(75)
+
+#putting above all together
+def make_pipeline():
+	base_u = Q1500US()
+	mean_10 = SimpleMovingAnverage(inputs = [USEquityPricing.close], window_length = 10, mask = base_u)
+	mean_30 = SimpleMovingAnverage(inputs = [USEquityPricing.close], window_length = 30, mask = base_u)
+	pct_dif = (mean_30 - mean_10) / mean_10
+	longs = pct_dif.bottom(75) 
+	shorts = pct_dif.top(75)
+	ls_screen = (longs|shorts)
+	return Pipeline(
+		columns = {
+		'longs':longs
+		'shorts':shorts
+		},
+		screen = securities_to_trade
+	)
+
+result = run_pipeline(make_pipeline(),start_time, end_time)
 
